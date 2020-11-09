@@ -1,9 +1,11 @@
 import Serializer from './application';
 import { PRIMARY_KEY, SLUG_KEY } from 'consul-ui/models/topology';
+import { inject as service } from '@ember/service';
 
 export default Serializer.extend({
   primaryKey: PRIMARY_KEY,
   slugKey: SLUG_KEY,
+  store: service('store'),
   respondForQueryRecord: function(respond, query) {
     const intentionSerializer = this.store.serializerFor('intention');
     return this._super(function(cb) {
